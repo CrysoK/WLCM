@@ -46,7 +46,12 @@ Al compartir el proyecto, cualquiera que cumpla con los [Requisitos](#requisitos
     - `so_windows.bat` para **Windows**.
 
     Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se crearán nuevos archivos compatibles con el SO actual.
-    > No se puede compilar para **Linux** desde **Windows** ni para **Windows** desde **Linux**.
+
+## Notas
+
+No se puede compilar para **Linux** desde **Windows** ni para **Windows** desde **Linux**.
+
+Es recomendable que ningún archivo ni carpeta contenga espacios o caracteres especiales (como tildes) para evitar problemas en general.
 
 ## Créditos
 
