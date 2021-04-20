@@ -1,4 +1,4 @@
-# Información
+# README
 
 ## Requisitos
 
