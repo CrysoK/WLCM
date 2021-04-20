@@ -38,12 +38,12 @@ Al compartir el proyecto, cualquiera que cumpla con los [Requisitos](#requisitos
 ## ¿Qué hacer?
 
 1. Clona o descarga como ZIP este repositorio. También puedes descargar individualmente los archivos necesarios.
-2. Copia [Makefile](Makefile), [so_linux.sh](so_linux.sh) y [so_windows.bat](so_windows.bat) a la raíz del proyecto. Si estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
+2. Copia [Makefile](Makefile), [CM_Linux.sh](CM_Linux.sh) y [CM_Windows.bat](CM_Windows.bat) a la raíz del proyecto. Si estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
 3. Modifica las opciones de [Makefile](Makefile) de acuerdo al proyecto.
 4. Una vez configurado, ejecutar según el sistema operativo en uso.
 
-    - `so_linux.sh` para **Linux**, a través de la terminal.
-    - `so_windows.bat` para **Windows**.
+    - `CM_Linux.sh` para **Linux**, a través de la terminal.
+    - `CM_Windows.bat` para **Windows**.
 
     Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se crearán nuevos archivos compatibles con el SO actual.
 
