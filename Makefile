@@ -21,9 +21,9 @@ SRCDIR = .
 # Ubicacion de los archivos .o
 OBJDIR = .
 # Al finalizar:
-# 0 No hacer nada
-# 1 Eliminar archivos .d
-# 2 Eliminar archivos .d y .o
+# 0 - No hacer nada
+# 1 - Eliminar archivos .d
+# 2 - Eliminar archivos .d y .o
 AFT = 0
 
 ################################################################################
