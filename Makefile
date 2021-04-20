@@ -24,7 +24,7 @@ OBJDIR = .
 # 0 - No hacer nada
 # 1 - Eliminar archivos .d
 # 2 - Eliminar archivos .d y .o
-AFT = 0
+AFT := 0
 
 ################################################################################
 ####################### NO CAMBIAR NADA DESDE ESTE PUNTO #######################
@@ -40,9 +40,22 @@ DELOBJ = $(OBJ)
 DEL = del
 EXE = .exe
 WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)\\%.o)
+ifeq ($(AFT),0)
+	AFTL = @echo ...
+	AFTW = @echo ...
+endif
+ifeq ($(AFT),1)
+	AFTL = $(RM) $(DEP)
+	AFTW = $(DEL) $(DEP)
+endif
+ifeq ($(AFT),2)
+	AFTL = $(RM) $(DEP) $(DELOBJ)
+	AFTW = $(DEL) $(DEP) $(WDELOBJ)
+endif
 
 ################################# COMPILACION ##################################
 
+.PHONY: all
 all: $(APPNAME)
 
 # Builds the app
@@ -70,14 +83,7 @@ clean:
 # Elimina archivos temporales
 .PHONY: cleandep
 cleandep:
-	ifeq ($(AFT),0)
-	endif
-	ifeq ($(AFT),1)
-		$(RM) $(DEP)
-	endif
-	ifeq ($(AFT),2)
-		$(RM) $(DEP) $(DELOBJ)
-	endif
+	$(AFTL)
 
 ######################## LIMPIEZA PARA SISTEMAS WINDOWS ########################
 
@@ -89,13 +95,6 @@ cleanw:
 # Elimina archivos temporales
 .PHONY: cleandepw
 cleandepw:
-	ifeq ($(AFT),0)
-	endif
-	ifeq ($(AFT),1)
-		$(DEL) $(DEP)
-	endif
-	ifeq ($(AFT),2)
-		$(DEL) $(DEP) $(WDELOBJ)
-	endif
+	$(AFTW)
 
 ##################################### FIN ######################################
