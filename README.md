@@ -43,13 +43,13 @@ propio sistema operativo.
 ## ¿Qué hacer?
 
 1. Clona o descarga como ZIP este repositorio. También puedes descargar individualmente los archivos necesarios.
-2. Copia [Makefile](Makefile), [M_Linux.sh](M_Linux.sh) y [M_Windows.bat](M_Windows.bat) a la raíz del proyecto. Si
+2. Copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.bat](MakeWindows.bat) a la raíz del proyecto. Si
 estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
 3. Modifica las opciones de [Makefile](Makefile) de acuerdo al proyecto.
 4. Una vez configurado, ejecutar según el sistema operativo en uso.
 
-    - `M_Linux.sh` para **Linux**, a través de la terminal.
-    - `M_Windows.bat` para **Windows**.
+    - `MakeLinux.sh` para **Linux**, a través de la terminal.
+    - `MakeWindows.bat` para **Windows**.
 
     Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y
     se crearán nuevos archivos compatibles con el SO actual.
