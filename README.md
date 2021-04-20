@@ -15,25 +15,29 @@ choco install make
 
 También es necesario tener instalado un compilador de `C/C++` para **Windows** como [MinGW](https://sourceforge.net/projects/mingw/files/).
 
-## Función
+## ¿Para qué sirve?
 
-La idea es facilitar la compilación de un proyecto de `C/C++` tanto en **Linux** como en **Windows**. Obviamente, el código fuente debe ser compatible con ambos sistemas.
+La idea es facilitar la compilación de un proyecto de `C/C++` tanto en **Linux** como en **Windows**.
 
-Al incluir estos archivos en tu proyecto cualquier persona podrá compilarlo rápidamente para su propio sistema operativo.
+El código fuente debe ser compatible con ambos sistemas.
 
-## Uso
+Al usar esto en un proyecto cualquier persona podrá compilarlo rápidamente para su propio sistema operativo (siempre que cumpla con los [Requisitos](#requisitos)).
 
-Copiar los archivos a la carpeta del proyecto.
+## ¿Qué hacer?
+
+Clonar o descargar como ZIP este repositorio. También se pueden descargar individualmente los archivos necesarios.
+
+Copiar [Makefile](Makefile), [so_linux.sh](so_linux.sh) y [so_windows.bat](so_windows.bat) a la raíz del proyecto.
 
 Modificar [Makefile](Makefile) de acuerdo al proyecto.
 
 Una vez configurado, ejecutar según el sistema operativo en uso.
 
-- `so_linux.sh` para **Linux**.
+- `so_linux.sh` para **Linux**, a través de la terminal.
 - `so_windows.bat` para **Windows**.
 
 Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se crearán nuevos archivos compatibles con el SO actual.
-> No se puede compilar para **UNIX** desde **Windows** ni para **Windows** desde **UNIX**.
+> No se puede compilar para **Linux** desde **Windows** ni para **Windows** desde **Linux**.
 
 ## Créditos
 
