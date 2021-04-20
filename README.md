@@ -8,9 +8,12 @@
 
 ### Windows
 
-- Un compilador de **C/C++** para **Windows**, como [MinGW](https://sourceforge.net/projects/mingw/files/). [Esta](https://platzi.com/tutoriales/1469-algoritmos/1901-como-instalar-gcc-para-compilar-programas-en-c-desde-la-consola-en-windows/) es una de muchas guías sobre su instalación.
+- Un compilador de **C/C++** para **Windows**, como [MinGW](https://sourceforge.net/projects/mingw/files/).
+[Esta](https://platzi.com/tutoriales/1469-algoritmos/1901-como-instalar-gcc-para-compilar-programas-en-c-desde-la-consola-en-windows/)
+es una de muchas guías sobre su instalación.
 
-- **make**. Para esto hay varios métodos. Lo más sencillo es instalar [Chocolatey](https://chocolatey.org/install) y luego usar el comando:
+- **make**. Para esto hay varios métodos. Lo más sencillo es instalar [Chocolatey](https://chocolatey.org/install) y
+luego usar el comando:
 
 ```bash
 choco install make
@@ -29,29 +32,34 @@ choco install make
 
 ## ¿Para qué sirve?
 
-El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en ambos sistemas operativos de forma fácil y rápida.
+El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en
+ambos sistemas operativos de forma fácil y rápida.
 
 De más está decir que el código fuente debe ser compatible con ambos sistemas.
 
-Al compartir el proyecto, cualquiera que cumpla con los [Requisitos](#requisitos) podrá compilarlo rápidamente en su propio sistema operativo.
+Al compartir el proyecto, cualquiera que cumpla con los [Requisitos](#requisitos) podrá compilarlo rápidamente en su
+propio sistema operativo.
 
 ## ¿Qué hacer?
 
 1. Clona o descarga como ZIP este repositorio. También puedes descargar individualmente los archivos necesarios.
-2. Copia [Makefile](Makefile), [M_Linux.sh](M_Linux.sh) y [M_Windows.bat](M_Windows.bat) a la raíz del proyecto. Si estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
+2. Copia [Makefile](Makefile), [M_Linux.sh](M_Linux.sh) y [M_Windows.bat](M_Windows.bat) a la raíz del proyecto. Si
+estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
 3. Modifica las opciones de [Makefile](Makefile) de acuerdo al proyecto.
 4. Una vez configurado, ejecutar según el sistema operativo en uso.
 
     - `M_Linux.sh` para **Linux**, a través de la terminal.
     - `M_Windows.bat` para **Windows**.
 
-    Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se crearán nuevos archivos compatibles con el SO actual.
+    Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y
+    se crearán nuevos archivos compatibles con el SO actual.
 
 ## Notas
 
 No se puede compilar para **Linux** desde **Windows** ni para **Windows** desde **Linux**.
 
-Es recomendable que ningún archivo ni carpeta contenga espacios o caracteres especiales (como tildes) para evitar problemas en general.
+Es recomendable que ningún archivo ni carpeta contenga espacios o caracteres especiales (como tildes) para evitar
+problemas en general. Por ejemplo, en vez de `D:\Programación\Programa Test\` usa `D:\Programacion\Programa_Test\`.
 
 ## Créditos
 
