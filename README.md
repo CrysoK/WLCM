@@ -28,11 +28,11 @@ choco install make
 
 ## ¿Para qué sirve?
 
-La idea es facilitar la compilación de un proyecto de `C/C++` tanto en **Linux** como en **Windows**.
+El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en ambos sistemas operativosde forma fácil y rápida.
 
-El código fuente debe ser compatible con ambos sistemas.
+De más está decir que el código fuente debe ser compatible con ambos sistemas.
 
-Al usar esto en un proyecto, cualquier persona podrá compilarlo rápidamente para su propio sistema operativo (siempre que cumpla con los [Requisitos](#requisitos)).
+Al compartir el proyecto, cualquiera que cumpla con los [Requisitos](#requisitos) podrá compilarlo rápidamente en su propio sistema operativo.
 
 ## ¿Qué hacer?
 
@@ -49,4 +49,4 @@ Al usar esto en un proyecto, cualquier persona podrá compilarlo rápidamente pa
 
 ## Créditos
 
-Gracias a **Adriano Markovic** por crear la base del Makefile usado aquí en su extensión para **Visual Studio Code**.
+Gracias a **Adriano Markovic** por crear, en su extensión para **Visual Studio Code**, la base del Makefile usado aquí.
