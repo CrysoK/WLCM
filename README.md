@@ -13,7 +13,7 @@ Es necesario instalar `make`. Para esto hay varios métodos. Lo más sencillo es
 choco install make
 ```
 
-También es necesario tener instalado un compilador de `C/C++` para **Windows**.
+También es necesario tener instalado un compilador de `C/C++` para **Windows** como [MinGW](https://sourceforge.net/projects/mingw/files/).
 
 ## Función
 
