@@ -24,7 +24,7 @@ choco install make
     ```
 
 2. Presiona `Enter` y espera a que se complete la instalación.
-3. Ya puedes instalar `make`.
+3. Ya puedes instalar **make**.
 
 ## ¿Para qué sirve?
 
