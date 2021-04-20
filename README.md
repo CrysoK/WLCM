@@ -13,6 +13,7 @@ Es necesario instalar `make`. Para esto hay varios métodos. Lo más sencillo es
 ```bash
 choco install make
 ```
+
 También es necesario tener instalado un compilador de `C/C++` para **Windows**.
 
 ## Función
