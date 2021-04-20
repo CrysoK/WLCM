@@ -41,8 +41,8 @@ DEL = del
 EXE = .exe
 WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)\\%.o)
 ifeq ($(AFT),0)
-	AFTL = @echo ...
-	AFTW = @echo ...
+	AFTL = @echo [Ningun archivo eliminado]
+	AFTW = @echo [Ningun archivo eliminado]
 endif
 ifeq ($(AFT),1)
 	AFTL = $(RM) $(DEP)
