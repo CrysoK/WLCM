@@ -29,7 +29,7 @@ choco install make
 
 ## ¿Para qué sirve?
 
-El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en ambos sistemas operativosde forma fácil y rápida.
+El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en ambos sistemas operativos de forma fácil y rápida.
 
 De más está decir que el código fuente debe ser compatible con ambos sistemas.
 
