@@ -2,5 +2,5 @@
 make cleanw
 make
 make cleandepw
-echo COMPILACION TERMINADA. YA PUEDE CERRAR ESTA VENTANA.
+echo YA PUEDE CERRAR ESTA VENTANA
 cmd /k
