@@ -8,27 +8,20 @@
 
 ### Windows
 
-- Un compilador de **C/C++** para **Windows**, como [MinGW](https://sourceforge.net/projects/mingw/files/).
-[Esta](https://platzi.com/tutoriales/1469-algoritmos/1901-como-instalar-gcc-para-compilar-programas-en-c-desde-la-consola-en-windows/)
-es una de muchas guías sobre su instalación.
+- El compilador de **C/C++** para **Windows** [MinGW64](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe) (Recomendado) o [MinGW](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe).
 
-- **make**. Para esto hay varios métodos. Lo más sencillo es instalar [Chocolatey](https://chocolatey.org/install) y
-luego usar el comando:
+  Hay muchas guías sobre como instalar **MinGW**, como [esta](https://platzi.com/tutoriales/1469-algoritmos/1901-como-instalar-gcc-para-compilar-programas-en-c-desde-la-consola-en-windows/).
+  
+  La instalación de **MinGW64** es muy similar. Para no complicarte con las opciones, elige:
+  - Versión más reciente
+  - Arquitectura `i686` si tu sistema es de 32 bits y `x86_64` si es de 64 bits
+  - *Threads* `posix` para mayor portabilidad.
+  - *Exception* `seh`
+  - Última *build revision* disponible.
 
-```bash
-choco install make
-```
+- **make**. Está incluido en los compiladores nombrados. Aparece como `mingw32-make.exe`
 
-#### Instalación rápida de Chocolatey
-
-1. Ejecuta **PowerShell** como administrador y copia lo siguiente:
-
-    ```bash
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    ```
-
-2. Presiona `Enter` y espera a que se complete la instalación.
-3. Ya puedes instalar **make**.
+> No olvides incluir la dirección del compilador en la variable de entorno `Path`
 
 ## ¿Para qué sirve?
 

@@ -16,9 +16,9 @@ LDFLAGS =
 APPNAME = main
 # Extension de los archivos fuente
 EXT = .c
-# Ubicacion de los archivos fuente
+# Ubicacion de los archivos fuente ("." para raiz)
 SRCDIR = .
-# Ubicacion de los archivos .o
+# Ubicacion de los archivos .o ("." para raiz)
 OBJDIR = .
 # Al finalizar:
 # 0 - No hacer nada
