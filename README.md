@@ -30,7 +30,7 @@ ambos sistemas operativos de forma fácil y rápida.
 
 De más está decir que el código fuente debe ser compatible con ambos sistemas.
 
-Al compartir el proyecto, cualquiera que cumpla con los [Requisitos](#requisitos) podrá compilarlo rápidamente en su
+Al compartir el proyecto, cualquiera que cumpla con los [requisitos](#requisitos) podrá compilarlo rápidamente en su
 propio sistema operativo.
 
 ## ¿Qué hacer?
