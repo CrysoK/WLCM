@@ -8,7 +8,9 @@
 
 ### Windows
 
-- El compilador de **C/C++** para **Windows** [MinGW64](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe) (recomendado) o [MinGW](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe).
+- El compilador de **C/C++** para **Windows**
+[MinGW64](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download)
+(recomendado) o [MinGW](https://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download).
 
   Hay muchas guías sobre como instalar **MinGW**, como [esta](https://platzi.com/tutoriales/1469-algoritmos/1901-como-instalar-gcc-para-compilar-programas-en-c-desde-la-consola-en-windows/).
   
@@ -18,6 +20,9 @@
   - *Threads* `posix` para mayor portabilidad.
   - *Exception* `seh`
   - Última *build revision* disponible.
+
+  Para comprobar si todo funciona bien, puedes ejecutar `cmd.exe` y el comando `gcc --version` debería funcionar sin
+  problemas.
 
 - **make**. Está incluido en los compiladores nombrados. Aparece como `mingw32-make.exe`
 
@@ -36,8 +41,8 @@ propio sistema operativo.
 ## ¿Qué hacer?
 
 1. Clona o descarga como ZIP este repositorio. También puedes descargar individualmente los archivos necesarios.
-2. Copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.bat](MakeWindows.bat) a la raíz del proyecto. Si
-estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
+2. Copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.bat](MakeWindows.bat) a la raíz del proyecto.
+Si estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
 3. Modifica las opciones de [Makefile](Makefile) de acuerdo al proyecto.
 4. Una vez configurado, ejecutar según el sistema operativo en uso.
 
