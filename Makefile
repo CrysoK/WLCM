@@ -2,9 +2,8 @@
 ################################### OPCIONES ###################################
 ################################################################################
 
-# Todas las carpetas deben terminar en "/" para funcionar.
-# Ejemplos: "src/", "sources/headers/", "source/include/"
-# Para indicar la raíz del proyecto: "./"
+# Todas las carpetas deben terminar en "/" para funcionar
+# Para indicar la raíz: "./"
 
 ################################### PROYECTO ###################################
 
@@ -87,7 +86,7 @@ ifeq ($(OS),Windows_NT)
 	MOVE:=cmd /c move
 	CLEAN:=cmd /c del /q
 	OBJ_DEP:=$(subst /,\,$(addprefix $(DIR_OBJ),$(OBJ) $(OBJ:.o=.d)))
-# $(DIR_OBJ:%/=%)
+	MKDIR:= $(subst /,\,$(DIR_SRC) $(DIR_INC) $(DIR_OBJ))
 else
 	LIBS:=$(LINUXLIBS)
 	AND:=;
@@ -95,7 +94,7 @@ else
 	MOVE:=mv
 	CLEAN:=rm
 	OBJ_DEP:=$(addprefix $(DIR_OBJ),$(OBJ) $(OBJ:.o=.d))
-# $(DIR_OBJ)*
+	MKDIR:=$(DIR_SRC) $(DIR_INC) $(DIR_OBJ)
 endif
 
 #################################### REGLAS ####################################
@@ -111,7 +110,7 @@ $(TARGET):$(OBJ)
 
 # Crea las carpetas del proyecto si no existen.
 init:
-	-@mkdir $(DIR_SRC) $(DIR_INC) $(DIR_OBJ)
+	-@mkdir $(MKDIR)
 	@echo CARPETAS DEL PROYECTO CREADAS
 
 # Elimina las dependencias de un archivo en particular. Usar si se modifica la
