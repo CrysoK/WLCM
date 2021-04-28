@@ -2,16 +2,18 @@
 ################################### OPCIONES ###################################
 ################################################################################
 
-# Todas las carpetas deben terminar en "/" para funcionar
+# Todas las carpetas deben terminar en "/" para funcionar.
+# Ejemplos: "src/", "sources/headers/", "source/include/"
+# Para indicar la raíz del proyecto: "./"
 
 ################################### PROYECTO ###################################
 
 # Ubicacion de los archivos fuente
-DIR_SRC:=src/
+DIR_SRC:=./
 # Ubicacion de archivos a incluir
-DIR_INC:=src/include/
+DIR_INC:=./
 # Ubicacion de archivos ".o" y ".d"
-DIR_OBJ:=obj/
+DIR_OBJ:=./
 # Extensión de los archivos fuente
 EXT:=c
 # Nombre del ejecutable resultante
@@ -84,14 +86,16 @@ ifeq ($(OS),Windows_NT)
 	CLEAR:=cls
 	MOVE:=cmd /c move
 	CLEAN:=cmd /c del /q
-	OBJ_DEP:=$(DIR_OBJ:%/=%)
+	OBJ_DEP:=$(subst /,\,$(addprefix $(DIR_OBJ),$(OBJ) $(OBJ:.o=.d)))
+# $(DIR_OBJ:%/=%)
 else
 	LIBS:=$(LINUXLIBS)
 	AND:=;
 	CLEAR:=clear
 	MOVE:=mv
 	CLEAN:=rm
-	OBJ_DEP:=$(DIR_OBJ)*
+	OBJ_DEP:=$(addprefix $(DIR_OBJ),$(OBJ) $(OBJ:.o=.d))
+# $(DIR_OBJ)*
 endif
 
 #################################### REGLAS ####################################
@@ -118,7 +122,7 @@ init:
 
 # Elimina los archivos resultantes de una compilación anterior.
 clean:
-	-@$(CLEAN) $(OBJ_DEP) $(TARGET) $(TARGET).exe
+	-$(CLEAN) $(OBJ_DEP) $(TARGET) $(TARGET).exe
 	@echo COMPILACION ANTERIOR ELIMINADA
 
 # Esto incluye todos los archivos ".d" al Makefile
