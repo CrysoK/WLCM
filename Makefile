@@ -2,99 +2,124 @@
 ################################### OPCIONES ###################################
 ################################################################################
 
-################################## COMPILADOR ##################################
-
-# Compilador
-CC = gcc
-# Parametros
-CXXFLAGS = -g -Wall
-LDFLAGS = 
+# Todas las carpetas deben terminar en "/" para funcionar
 
 ################################### PROYECTO ###################################
 
-# Nombre del ejecutable
-APPNAME = main
-# Extension de los archivos fuente
-EXT = .c
-# Ubicacion de los archivos fuente ("." para raiz)
-SRCDIR = .
-# Ubicacion de los archivos .o ("." para raiz)
-OBJDIR = .
-# Al finalizar:
-# 0 - No hacer nada
-# 1 - Eliminar archivos .d
-# 2 - Eliminar archivos .d y .o
-AFT := 0
+# Ubicacion de los archivos fuente
+DIR_SRC:=src/
+# Ubicacion de archivos a incluir
+DIR_INC:=src/include/
+# Ubicacion de archivos ".o" y ".d"
+DIR_OBJ:=obj/
+# Extensión de los archivos fuente
+EXT:=c
+# Nombre del ejecutable resultante
+TARGET:=main
+
+################################## COMPILADOR ##################################
+
+# Compilador
+CC:=gcc
+# Opciones para C y C++
+COMMONFLAGS:=-Wall -O2 -g
+# Opciones solo para C
+CFLAGS=$(COMMONFLAGS)
+# Opciones solo para C++
+CXXFLAGS=$(COMMONFLAGS)
+# Librerias a enlazar tanto en Linux como en Windows
+COMMONLIBS:=
+# Librerias a enlazar solo en Windows
+WIN32LIBS:=$(COMMONLIBS)
+# Librerias a enlazar solo en Linux
+LINUXLIBS:=$(COMMONLIBS)
 
 ################################################################################
-####################### NO CAMBIAR NADA DESDE ESTE PUNTO #######################
+########################### NO MODIFICAR DESDE AQUI ############################
 ################################################################################
 
-SRC = $(wildcard $(SRCDIR)/*$(EXT))
-OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
-DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
-# Para sistemas UNIX
-RM = rm
-DELOBJ = $(OBJ)
-# Para sistemas Windows
-DEL = del
-EXE = .exe
-WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)\\%.o)
-ifeq ($(AFT),0)
-	AFTL = @echo [Ningun archivo eliminado]
-	AFTW = @echo [Ningun archivo eliminado]
+################################## FUNCIONES ##################################
+
+# Retorna la lista de subcarpetas en la carpeta $1
+search-dir=$(filter-out $1,$(dir $(wildcard $1*/)))
+# Retorna la lista de carpetas y subcarpetas en $1
+search-dir-all=$(strip $(call search-dir,$1) $(foreach DIR,$(call search-dir,$1),$(call search-dir-all,$(DIR))))
+# Retorna la lista de archivos en las carpetas y subcarpetas de $1
+search-file=$(foreach DIR,$1,$(wildcard $(DIR)*.$(EXT)))
+
+################################## VARIABLES ##################################
+
+# Lista de todas las carpetas y subcarpetas que pueden contener archivos fuente
+DIR_SRC_ALL:=$(DIR_SRC) $(call search-dir-all,$(DIR_SRC))
+# Lista de todas las carpetas y subcarpetas que pueden contener cabeceras
+DIR_INC_ALL:=$(DIR_INC) $(call search-dir-all,$(DIR_INC))
+# Lista de todos los archivos fuente de la carpeta fuente y sus subcarpetas
+SRC:=$(notdir $(call search-file,$(DIR_SRC_ALL)))
+# Lista de todos los archivos ".o"
+OBJ:=$(SRC:.$(EXT)=.o)
+# Lista de todos los -I para encontrar archivos fuente y cabeceras durante la
+# compilación
+I_SRC:=$(addprefix -I,$(DIR_SRC_ALL))
+I_INC:=$(addprefix -I,$(DIR_INC_ALL))
+
+# Variable que contiene todas las direcciones de los archivos fuente, cabeceras,
+# ".o" y ".d"
+VPATH:=$(DIR_SRC_ALL) $(DIR_OBJ)
+
+# Argumentos que indican al compilador donde están los archivos fuente y
+# cabeceras. -MMD crea los archivos ".d"
+COMMONFLAGS+=$(I_SRC) $(I_INC) -MMD
+
+############################## SISTEMA OPERATIVO ##############################
+
+# LIBS: Librerías a enlazar según SO
+# AND: Clave que permite unir comandos
+# CLEAR: Comando que limpia la consola
+# MOVE: Comando para mover archivos entre carpetas
+# CLEAN: Comando para eliminar archivos
+# OBJ_DEP: Lo que se elimina al usar "clean"
+ifeq ($(OS),Windows_NT)
+	LIBS:=$(WIN32LIBS)
+	AND:=&
+	CLEAR:=cls
+	MOVE:=cmd /c move
+	CLEAN:=cmd /c del /q
+	OBJ_DEP:=$(DIR_OBJ:%/=%)
+else
+	LIBS:=$(LINUXLIBS)
+	AND:=;
+	CLEAR:=clear
+	MOVE:=mv
+	CLEAN:=rm
+	OBJ_DEP:=$(DIR_OBJ)*
 endif
-ifeq ($(AFT),1)
-	AFTL = $(RM) $(DEP)
-	AFTW = $(DEL) $(DEP)
-endif
-ifeq ($(AFT),2)
-	AFTL = $(RM) $(DEP) $(DELOBJ)
-	AFTW = $(DEL) $(DEP) $(WDELOBJ)
-endif
 
-################################# COMPILACION ##################################
+#################################### REGLAS ####################################
 
-.PHONY: all
-all: $(APPNAME)
+.PHONY:all init clear %-depend clean
 
-# Builds the app
-$(APPNAME): $(OBJ)
-	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+# La regla principal. Compila a TARGET.
+# Los archivos ".o" y ".d" son movidos a la carpeta correspondiente.
+$(TARGET):$(OBJ)
+	-@$(MOVE) *.o $(DIR_OBJ)
+	-@$(MOVE) *.d $(DIR_OBJ)
+	$(CC) $(addprefix $(DIR_OBJ),$(OBJ)) $(LIBS) -o $(TARGET)
 
-# Creates the dependecy rules
-%.d: $(SRCDIR)/%$(EXT)
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
+# Crea las carpetas del proyecto si no existen.
+init:
+	-@mkdir $(DIR_SRC) $(DIR_INC) $(DIR_OBJ)
+	@echo CARPETAS DEL PROYECTO CREADAS
 
-# Includes all .h files
--include $(DEP)
+# Elimina las dependencias de un archivo en particular. Usar si se modifica la
+# ubicación o nombre de un archivo.
+%-depend:
+	-@cd obj $(AND) $(CLEAN) $(*F).o $(AND) $(CLEAN) $(*F).d
+	@echo LAS DEPENDENCIAS DE $(*F).$(EXT) HAN SIDO ELIMINADAS.
 
-# Building rule for .o files and its .c/.cpp in combination with all .h
-$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-	$(CC) $(CXXFLAGS) -o $@ -c $<
-
-######################### LIMPIEZA PARA SISTEMAS UNIX ##########################
-
-# Elimina todos menos la fuente
-.PHONY: clean
+# Elimina los archivos resultantes de una compilación anterior.
 clean:
-	$(RM) $(DELOBJ) $(DEP) $(APPNAME) $(WDELOBJ) $(APPNAME)$(EXE)
+	-@$(CLEAN) $(OBJ_DEP) $(TARGET) $(TARGET).exe
+	@echo COMPILACION ANTERIOR ELIMINADA
 
-# Elimina archivos temporales
-.PHONY: cleandep
-cleandep:
-	$(AFTL)
-
-######################## LIMPIEZA PARA SISTEMAS WINDOWS ########################
-
-# Elimina todos menos la fuente
-.PHONY: cleanw
-cleanw:
-	$(DEL) $(WDELOBJ) $(DEP) $(APPNAME)$(EXE) $(APPNAME)
-
-# Elimina archivos temporales
-.PHONY: cleandepw
-cleandepw:
-	$(AFTW)
-
-##################################### FIN ######################################
+# Esto incluye todos los archivos ".d" al Makefile
+-include $(DIR_OBJ)*.d

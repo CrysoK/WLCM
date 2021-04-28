@@ -28,29 +28,46 @@
 
 > No olvides incluir la dirección del compilador en la variable de entorno `Path`
 
-## ¿Para qué sirve?
+## Concepto
 
-El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en
-ambos sistemas operativos de forma fácil y rápida.
+El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos y
+carpetas en ambos sistemas operativos de forma fácil y rápida.
 
 De más está decir que el código fuente debe ser compatible con ambos sistemas.
 
 Al compartir el proyecto, cualquiera que cumpla con los [requisitos](#requisitos) podrá compilarlo rápidamente en su
 propio sistema operativo.
 
-## ¿Qué hacer?
+## ¿Cómo usar?
 
-1. Clona o descarga como ZIP este repositorio. También puedes descargar individualmente los archivos necesarios.
+### Crear un proyecto
+
+1. Clona o descarga como ZIP este repositorio. También puedes descargar los archivos necesarios individualmente.
 2. Copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.bat](MakeWindows.bat) a la raíz del proyecto.
-Si estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
-3. Modifica las opciones de [Makefile](Makefile) de acuerdo al proyecto.
-4. Una vez configurado, ejecutar según el sistema operativo en uso.
+3. Modifica las opciones de [Makefile](Makefile) de acuerdo a tus preferencias.
+4. Una vez configurado, ejecuta [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.bat](MakeWindows.bat) según el sistema
+operativo en uso.
 
-    - `MakeLinux.sh` para **Linux**, a través de la terminal.
-    - `MakeWindows.bat` para **Windows**.
+### Compartir un proyecto
 
-    Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y
-    se crearán nuevos archivos compatibles con el SO actual.
+Una vez realizados los pasos de [Crear un proyecto](#crear-un-proyecto), este puede ser compilado tanto en Linux como en
+Windows simplemente cumpliendo con los [requisitos](#requisitos) y ejecutando el archivo correspondiente
+([MakeLinux.sh](MakeLinux.sh) o [MakeWindows.bat](MakeWindows.bat)).
+
+Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se
+crearán nuevos archivos compatibles con el SO actual.
+
+### Comandos
+
+El archivo [Makefile](Makefile) incluye algunas funciones que no se usan en [MakeLinux.sh](MakeLinux.sh) ni
+[MakeWindows.bat](MakeWindows.bat). Puedes editar estos archivos para hacer uso de ellas o emplearlas directamente
+mediante la terminal.
+
+- `init` Crea las carpetas faltantes de las indicadas en las opciones de [Makefile](Makefile).
+- `%-depend` Elimina las dependencias del archivo `%`. Útil cuando se cambia su ubicación.
+- `clean` Elimina todos los archivos resultantes de una compilación.
+
+Ejemplo: `mingw32-make init`
 
 ## Notas
 
@@ -61,4 +78,4 @@ problemas en general. Por ejemplo, en vez de `D:\Programación\Programa Test\` u
 
 ## Créditos
 
-Gracias a **Adriano Markovic** por crear, en su extensión para **Visual Studio Code**, la base del Makefile usado aquí.
+[Makefile](Makefile) es básicamente una traducción al español de LaurentTreguier/Makefile.
