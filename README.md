@@ -78,4 +78,5 @@ problemas en general. Por ejemplo, en vez de `D:\Programación\Programa Test\` u
 
 ## Créditos
 
-[Makefile](Makefile) es básicamente una traducción al español de LaurentTreguier/Makefile.
+[Makefile](Makefile) es básicamente una traducción al español de
+[LaurentTreguier/Makefile](https://github.com/LaurentTreguier/Makefile).
