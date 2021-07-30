@@ -1,5 +1,3 @@
-[GitHub](https://github.com/CrysoK/Win-UNIX_C_Makefile)
-
 ## Requisitos
 
 ### Linux
