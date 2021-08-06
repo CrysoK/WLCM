@@ -36,7 +36,7 @@ propio sistema operativo.
 
 - **make**. Está incluido en los compiladores nombrados. Aparece como `mingw32-make.exe`
 
-#### No olvides incluir la ubicación del compilador en la variable de entorno `Path`
+**No olvides incluir la ubicación del compilador en la variable de entorno `Path`**
 
 ## ¿Cómo usar?
 
