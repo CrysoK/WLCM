@@ -2,7 +2,7 @@
 
 ## Descripción
 
-El objetivo de WLCM es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos y
+El objetivo de **WLCM** es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos y
 carpetas en ambos sistemas operativos de forma fácil y rápida.
 
 De más está decir que el código fuente debe ser compatible con ambos sistemas.
