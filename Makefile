@@ -2,38 +2,55 @@
 ################################### OPCIONES ###################################
 ################################################################################
 
+##################################### INFO #####################################
+
 # Todas las carpetas deben terminar en "/" para funcionar
 # Para indicar la raíz: "./"
 
 ################################### PROYECTO ###################################
 
-# Ubicacion de los archivos fuente
+# Nombre que ejecutable resultante
+# Ejemplo: main
+TARGET:=Programa
+
+# Extensión de los archivos fuente
+# Ejemplo: c
+EXT:=c
+
+# Ubicacion de archivos ".c" o ".cpp", puede contener carpetas
+# Ejemplo: src/
 DIR_SRC:=./
-# Ubicacion de archivos a incluir
+# Ubicacion de archivos ".h" o ".hpp", puede contener carpetas
+# Ejemplo: inc/
 DIR_INC:=./
 # Ubicacion de archivos ".o" y ".d"
+# Ejemplo: obj/
 DIR_OBJ:=./
-# Extensión de los archivos fuente
-EXT:=c
-# Nombre del ejecutable resultante
-TARGET:=main
+
+# Librerias a enlazar independientemente del SO
+# Ejemplo: -Llib -lSDL2main -lSDL2
+COMMONLIBS:=
+# Ubicacion de librerias a enlazar solo en Windows
+# Ejemplo: $(COMMONLIBS) -Llib/win -lFoo
+WIN32LIBS:=$(COMMONLIBS)
+# Librerias a enlazar solo en Linux
+# Ejemplo: $(COMMONLIBS) -Llib/lnx -lFoo
+LINUXLIBS:=$(COMMONLIBS)
 
 ################################## COMPILADOR ##################################
 
 # Compilador
+# Ejemplo: gcc
 CC:=gcc
-# Opciones para C y C++
-COMMONFLAGS:=-Wall -O2 -g
+# Opciones para el compilador
+# Ejemplo: -g -Wall
+COMMONFLAGS:=-g -Wall
 # Opciones solo para C
+# Ejemplo: $(COMMONFLAGS) -std=c90
 CFLAGS=$(COMMONFLAGS)
 # Opciones solo para C++
+# Ejemplo: $(COMMONFLAGS) -std=c++98
 CXXFLAGS=$(COMMONFLAGS)
-# Librerias a enlazar tanto en Linux como en Windows
-COMMONLIBS:=
-# Librerias a enlazar solo en Windows
-WIN32LIBS:=$(COMMONLIBS)
-# Librerias a enlazar solo en Linux
-LINUXLIBS:=$(COMMONLIBS)
 
 ################################################################################
 ########################### NO MODIFICAR DESDE AQUI ############################
@@ -44,7 +61,8 @@ LINUXLIBS:=$(COMMONLIBS)
 # Retorna la lista de subcarpetas en la carpeta $1
 search-dir=$(filter-out $1,$(dir $(wildcard $1*/)))
 # Retorna la lista de carpetas y subcarpetas en $1
-search-dir-all=$(strip $(call search-dir,$1) $(foreach DIR,$(call search-dir,$1),$(call search-dir-all,$(DIR))))
+search-dir-all=$(strip $(call search-dir,$1) $(foreach DIR,\
+$(call search-dir,$1),$(call search-dir-all,$(DIR))))
 # Retorna la lista de archivos en las carpetas y subcarpetas de $1
 search-file=$(foreach DIR,$1,$(wildcard $(DIR)*.$(EXT)))
 
@@ -58,8 +76,7 @@ DIR_INC_ALL:=$(DIR_INC) $(call search-dir-all,$(DIR_INC))
 SRC:=$(notdir $(call search-file,$(DIR_SRC_ALL)))
 # Lista de todos los archivos ".o"
 OBJ:=$(SRC:.$(EXT)=.o)
-# Lista de todos los -I para encontrar archivos fuente y cabeceras durante la
-# compilación
+# Lista de todos los -I para encontrar cabeceras durante la compilación
 I_SRC:=$(addprefix -I,$(DIR_SRC_ALL))
 I_INC:=$(addprefix -I,$(DIR_INC_ALL))
 
