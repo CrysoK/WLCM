@@ -1,3 +1,15 @@
+# Windows & Linux C/C++ Makefile (WLCM)
+
+## Descripción
+
+El objetivo de WLCM es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos y
+carpetas en ambos sistemas operativos de forma fácil y rápida.
+
+De más está decir que el código fuente debe ser compatible con ambos sistemas.
+
+Al compartir el proyecto, cualquiera que cumpla con los [requisitos](#requisitos) podrá compilarlo rápidamente en su
+propio sistema operativo.
+
 ## Requisitos
 
 ### Linux
@@ -24,31 +36,38 @@
 
 - **make**. Está incluido en los compiladores nombrados. Aparece como `mingw32-make.exe`
 
-> No olvides incluir la dirección del compilador en la variable de entorno `Path`
+**No olvides incluir la ubicación del compilador en la variable de entorno `Path`**
 
-## ¿Para qué sirve?
+## ¿Cómo usar?
 
-El objetivo es permitir la compilación de un programa multiplataforma de `C/C++` compuesto por múltiples archivos en
-ambos sistemas operativos de forma fácil y rápida.
+### Crear un proyecto
 
-De más está decir que el código fuente debe ser compatible con ambos sistemas.
+1. Descarga y copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.cmd](MakeWindows.cmd) a la raíz
+del proyecto.
+2. Modifica las opciones de [Makefile](Makefile) de acuerdo a tus preferencias.
+3. Una vez configurado, ejecuta [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.cmd](MakeWindows.cmd) según el sistema
+operativo en uso.
 
-Al compartir el proyecto, cualquiera que cumpla con los [requisitos](#requisitos) podrá compilarlo rápidamente en su
-propio sistema operativo.
+### Compartir un proyecto
 
-## ¿Qué hacer?
+Una vez realizados los pasos para [crear un proyecto](#crear-un-proyecto), este puede ser compilado tanto en Linux como en
+Windows simplemente cumpliendo con los [requisitos](#requisitos) y ejecutando el archivo correspondiente
+([MakeLinux.sh](MakeLinux.sh) o [MakeWindows.cmd](MakeWindows.cmd)).
 
-1. Clona o descarga como ZIP este repositorio. También puedes descargar individualmente los archivos necesarios.
-2. Copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.bat](MakeWindows.bat) a la raíz del proyecto.
-Si estos archivos ya existen y solo quieres compilar el proyecto, continúa en el paso 4.
-3. Modifica las opciones de [Makefile](Makefile) de acuerdo al proyecto.
-4. Una vez configurado, ejecutar según el sistema operativo en uso.
+Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se
+crearán nuevos archivos compatibles con el SO actual.
 
-    - `MakeLinux.sh` para **Linux**, a través de la terminal.
-    - `MakeWindows.bat` para **Windows**.
+### Comandos
 
-    Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y
-    se crearán nuevos archivos compatibles con el SO actual.
+El archivo [Makefile](Makefile) incluye algunas funciones que no se usan en [MakeLinux.sh](MakeLinux.sh) ni
+[MakeWindows.cmd](MakeWindows.cmd). Puedes editar estos archivos para hacer uso de ellas o emplearlas directamente
+mediante la terminal.
+
+- `init` Crea las carpetas faltantes de las indicadas en las opciones de [Makefile](Makefile).
+- `%-depend` Elimina las dependencias del archivo `%`. Útil cuando se cambia su ubicación.
+- `clean` Elimina todos los archivos resultantes de una compilación.
+
+Ejemplo: `mingw32-make init`
 
 ## Notas
 
@@ -59,4 +78,5 @@ problemas en general. Por ejemplo, en vez de `D:\Programación\Programa Test\` u
 
 ## Créditos
 
-Gracias a **Adriano Markovic** por crear, en su extensión para **Visual Studio Code**, la base del Makefile usado aquí.
+[Makefile](Makefile) es básicamente una traducción al español de
+[LaurentTreguier/Makefile](https://github.com/LaurentTreguier/Makefile).
