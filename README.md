@@ -46,7 +46,7 @@ propio sistema operativo.
 del proyecto.
 2. Modifica las opciones de [Makefile](Makefile) de acuerdo a tus preferencias.
    Las carpetas [Ejemplo1](Ejemplo1) y [Ejemplo2](Ejemplo2) tienen estructuras
-   usuales de proyectos en C.
+   usuales de proyectos en **C/C++**.
 3. Una vez configurado, ejecuta [makeLinux.sh](makeLinux.sh) o [makeWindows.cmd](makeWindows.cmd) según el sistema
 operativo en uso.
 
