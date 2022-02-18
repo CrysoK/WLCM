@@ -1,4 +1,4 @@
-# Windows & Linux C/C++ Makefile (WLCM)
+# Windows & Linux C/C++ Makefile
 
 ## Descripción
 
@@ -42,25 +42,27 @@ propio sistema operativo.
 
 ### Crear un proyecto
 
-1. Descarga y copia [Makefile](Makefile), [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.cmd](MakeWindows.cmd) a la raíz
+1. Descarga y copia [Makefile](Makefile), [makeLinux.sh](makeLinux.sh) y [makeWindows.cmd](makeWindows.cmd) a la raíz
 del proyecto.
 2. Modifica las opciones de [Makefile](Makefile) de acuerdo a tus preferencias.
-3. Una vez configurado, ejecuta [MakeLinux.sh](MakeLinux.sh) y [MakeWindows.cmd](MakeWindows.cmd) según el sistema
+   Las carpetas [Ejemplo1](Ejemplo1) y [Ejemplo2](Ejemplo2) tienen estructuras
+   usuales de proyectos en C.
+3. Una vez configurado, ejecuta [makeLinux.sh](makeLinux.sh) o [makeWindows.cmd](makeWindows.cmd) según el sistema
 operativo en uso.
 
 ### Compartir un proyecto
 
 Una vez realizados los pasos para [crear un proyecto](#crear-un-proyecto), este puede ser compilado tanto en Linux como en
 Windows simplemente cumpliendo con los [requisitos](#requisitos) y ejecutando el archivo correspondiente
-([MakeLinux.sh](MakeLinux.sh) o [MakeWindows.cmd](MakeWindows.cmd)).
+([makeLinux.sh](makeLinux.sh) o [makeWindows.cmd](makeWindows.cmd)).
 
-Cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se
+Por defecto, cada vez que se ejecuten estos archivos, se eliminará la compilación anterior sin importar en qué SO fue realizada y se
 crearán nuevos archivos compatibles con el SO actual.
 
 ### Comandos
 
-El archivo [Makefile](Makefile) incluye algunas funciones que no se usan en [MakeLinux.sh](MakeLinux.sh) ni
-[MakeWindows.cmd](MakeWindows.cmd). Puedes editar estos archivos para hacer uso de ellas o emplearlas directamente
+El archivo [Makefile](Makefile) incluye algunas funciones que no se usan en [makeLinux.sh](makeLinux.sh) ni
+[makeWindows.cmd](makeWindows.cmd). Puedes editar estos archivos para hacer uso de ellas o emplearlas directamente
 mediante la terminal.
 
 - `init` Crea las carpetas faltantes de las indicadas en las opciones de [Makefile](Makefile).
